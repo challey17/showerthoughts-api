@@ -6,6 +6,7 @@ const UsersService = require("./users-service");
 const usersRouter = express.Router();
 const jsonParser = express.json();
 
+// DO I NEED XSS?
 const serializeUser = (user) => ({
   id: user.id,
   created: user.created,

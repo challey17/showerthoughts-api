@@ -5,6 +5,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const { NODE_ENV } = require("./config");
 const usersRouter = require("./users/users-router");
+const postsRouter = require("./posts/posts-router");
 
 const app = express();
 //set up env variables for local and heroku
@@ -26,6 +27,8 @@ app.use("/api/users", usersRouter);
  * U - N/A
  * D - N/A
  */
+
+app.use("/api/posts", postsRouter);
 // /api/posts
 /* CRUD
  * C - .post() -> body -> user_id,content
