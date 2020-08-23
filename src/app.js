@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
 const { NODE_ENV } = require("./config");
+const usersRouter = require("./users/users-router");
 
 const app = express();
 //set up env variables for local and heroku
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
 
+app.use("/api/users", usersRouter);
 // /api/users
 /* CRUD
  * C - .post() -> body: {} -> res.status(201).json({id:5})
