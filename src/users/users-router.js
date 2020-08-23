@@ -1,6 +1,6 @@
 const path = require("path");
 const express = require("express");
-const xss = require("xss");
+//const xss = require("xss");
 const UsersService = require("./users-service");
 
 const usersRouter = express.Router();
@@ -12,19 +12,10 @@ const serializeUser = (user) => ({
 });
 
 usersRouter.route("/").post(jsonParser, (req, res, next) => {
-  const { id, created } = req.body;
-  const newUser = { id, created };
+  const newUser = {};
 
-  for (const [key, value] of Object.entries(newUser)) {
-    if (value == null) {
-      return res.status(400).json({
-        error: { message: `Missing '${key}' in request body` },
-      });
-    }
-  }
-
-  newUser.id = nickname;
-  newUser.created = password;
+  newUser.id = res.id;
+  newUser.created = res.created;
 
   UsersService.insertUser(req.app.get("db"), newUser)
     .then((user) => {
@@ -35,3 +26,5 @@ usersRouter.route("/").post(jsonParser, (req, res, next) => {
     })
     .catch(next);
 });
+
+module.exports = usersRouter;
