@@ -15,6 +15,10 @@ const PostsService = {
         return rows[0];
       });
   },
+  //
+  getTodaysPosts(knex) {
+    return knex.from("posts").select("*").whereRaw("created > CURRENT_DATE");
+  },
   getById(knex, user_id) {
     return knex.from("posts").select("*").where("user_id", user_id).first();
   },
