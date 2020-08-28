@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const PostsService = require("./posts-service");
+const xss = require("xss");
 
 const postsRouter = express.Router();
 const jsonParser = express.json();
@@ -8,7 +9,7 @@ const jsonParser = express.json();
 const serializePost = (post) => ({
   id: post.id,
   user_id: post.user_id,
-  content: post.content, // TODO - add xss()
+  content: xss(post.content),
   voters: post.voters,
   created: post.created,
 });
