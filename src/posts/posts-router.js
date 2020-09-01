@@ -10,7 +10,7 @@ const serializePost = (post) => ({
   id: post.id,
   user_id: post.user_id,
   content: xss(post.content),
-  voters: post.voters,
+  voters: post.voters || "",
   created: post.created,
 });
 
@@ -44,22 +44,25 @@ postsRouter
 // in postman http://localhost:8000/api/posts/4 works fine
 // but can't use with query params ? get errors
 postsRouter
-  .route("/:user_id")
-  .all((req, res, next) => {
-    PostsService.getById(req.app.get("db"), req.params.user_id)
-      .then((post) => {
-        if (!post) {
+  .route("/:id")
+  .get((req, res, next) => {
+    // will use req.params.id as a user id
+    PostsService.getByUser(req.app.get("db"), req.params.id)
+      .then((posts) => {
+        if (!posts) {
           return res.status(404).json({
             error: { message: `user doesn't exist` },
           });
         }
-        res.post = post;
-        next();
+        res.json(posts.map(serializePost));
       })
       .catch(next);
   })
-  .get((req, res, next) => {
-    res.json(serializePost(res.post));
+  .patch((req, res, next) => {
+    // will use req.params.id as a post id
+    PostsService.updatePost(req.app.get("db"), req.params.id, req.params.body)
+      .then(() => res.send(204))
+      .catch(next);
   });
 
 module.exports = postsRouter;

@@ -19,8 +19,11 @@ const PostsService = {
   getTodaysPosts(knex) {
     return knex.from("posts").select("*").whereRaw("created > CURRENT_DATE");
   },
-  getById(knex, user_id) {
-    return knex.from("posts").select("*").where("user_id", user_id).first();
+  getByUser(knex, user_id) {
+    return knex.from("posts").select("*").where("user_id", user_id);
+  },
+  updatePost(knex, post_id, updatedPost) {
+    return knex.update("posts").where("id", post_id).set(updatedPost);
   },
 };
 
