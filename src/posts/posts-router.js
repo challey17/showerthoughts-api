@@ -41,8 +41,6 @@ postsRouter
       .catch(next);
   });
 
-// in postman http://localhost:8000/api/posts/4 works fine
-// but can't use with query params ? get errors
 postsRouter
   .route("/:id")
   .get((req, res, next) => {
