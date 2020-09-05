@@ -23,7 +23,8 @@ const PostsService = {
     return knex.from("posts").select("*").where("user_id", user_id);
   },
   updatePost(knex, post_id, updatedPost) {
-    return knex.update("posts").where("id", post_id).set(updatedPost);
+    console.log({ post_id, updatedPost });
+    return knex("posts").where("id", post_id).update(updatedPost);
   },
 };
 

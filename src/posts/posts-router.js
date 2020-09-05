@@ -56,9 +56,9 @@ postsRouter
       })
       .catch(next);
   })
-  .patch((req, res, next) => {
+  .put((req, res, next) => {
     // will use req.params.id as a post id
-    PostsService.updatePost(req.app.get("db"), req.params.id, req.params.body)
+    PostsService.updatePost(req.app.get("db"), req.params.id, req.body)
       .then(() => res.send(204))
       .catch(next);
   });
