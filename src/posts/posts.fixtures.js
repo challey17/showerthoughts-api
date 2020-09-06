@@ -1,4 +1,5 @@
 function makePostsArray() {
+  //let d = new Date().toUTCString();
   return [
     {
       id: 1,
