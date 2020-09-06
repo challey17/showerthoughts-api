@@ -4,6 +4,9 @@
 //PUT responds with 204
 const knex = require("knex");
 const app = require("../app");
+const { makeUsersArray } = require("../users/users.fixtures");
+const { makePostsArray } = require("./posts.fixtures");
+const { expect } = require("chai");
 
 describe("Posts endpoints", function () {
   let db;
@@ -26,20 +29,36 @@ describe("Posts endpoints", function () {
     db.raw("TRUNCATE posts, users RESTART IDENTITY CASCADE")
   );
 
-  describe(`GET /api/posts`, () => {
+  describe.only(`GET /api/posts`, () => {
     context(`Given no posts `, () => {
       it(`responds with 200 and an array`, () => {
         return supertest(app).get("/api/posts").expect(200, []);
       });
     });
+
+    context(`Given there are posts `, () => {
+      const testPosts = makePostsArray();
+      const testUsers = makeUsersArray();
+
+      beforeEach("insert users", () => {
+        return db.into("users").insert(testUsers);
+      });
+      beforeEach("insert posts", () => {
+        return db.into("posts").insert(testPosts);
+      });
+
+      it(`responds with 200 and test array from fixtures`, () => {
+        return supertest(app).get("/api/posts").expect(200, testPosts);
+      });
+    });
   });
 
   describe(`POST /api/posts`, () => {
-    beforeEach("clean the table", () =>
-      db.raw("TRUNCATE posts, users RESTART IDENTITY CASCADE")
-    );
+    const testUser = {
+      id: 3,
+    };
     const testPost = {
-      user_id: 45,
+      user_id: 3,
       content: "blah blah",
     };
     context(`Given a POST request`, () => {
