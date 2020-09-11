@@ -2,7 +2,7 @@
 
 [Live Link](https://showerthoughts.vercelapp.com)
 
-App for sharing "shower thoughts" - brief observations about life that are often humorous. Users are given an Id that is stored in their device local storage which allows for user specific data without a login/password.
+App for sharing "shower thoughts" - brief observations about life that are often humorous. Users are given an Id that is stored in their device local storage which allows for user-specific data without a login/password.
 
 [Client Repo](https://showerthoughts.vercelapp.com)
 
