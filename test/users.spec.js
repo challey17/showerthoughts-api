@@ -1,7 +1,5 @@
-// POST, check if you can send post, get back 201
-
 const knex = require("knex");
-const app = require("../app");
+const app = require("../src/app");
 
 describe("users Endpoints", function () {
   let db;

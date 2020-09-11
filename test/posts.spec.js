@@ -1,10 +1,6 @@
-//GET route, check that it returns an array, status 200,
-//POST, CHECK THAT YOU CAN SEND POST GET BACK 201
-// GET by id /posts/:id
-//PUT responds with 204
 const knex = require("knex");
-const app = require("../app");
-const { makeUsersArray } = require("../users/users.fixtures");
+const app = require("../src/app");
+const { makeUsersArray } = require("./users.fixtures");
 const { makePostsArray } = require("./posts.fixtures");
 const { expect } = require("chai");
 
