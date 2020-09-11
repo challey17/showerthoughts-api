@@ -21,23 +21,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", usersRouter);
-// /api/users
-/* CRUD
- * C - .post() -> body: {} -> res.status(201).json({id:5})
- * R - .get() -> N/A
- * U - N/A
- * D - N/A
- */
 
 app.use("/api/posts", postsRouter);
-// /api/posts
-/* CRUD
- * C - .post() -> body -> user_id,content
- * R - .get() -> gets all posts for today
- * R - .get() -> gets all posts for a user
- * U - N/A
- * D - N/A
- */
 
 // ERROR HANDLING: SHOW DETAILED ERRORS IN DEVELOPMENT,
 // NON DETAILED MESSAGES IN PRODUCTION FOR SECURITY
