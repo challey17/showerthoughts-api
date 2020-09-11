@@ -1,6 +1,6 @@
 # Showerthoughts API
 
-[Live Link](https://showerthoughts-client.vercelapp.com)
+[Live Link](https://showerthoughts-client.challey17.vercel.app/)
 
 App for sharing "shower thoughts" - brief observations about life that are often humorous. Users are given an Id that is stored in their device local storage which allows for user-specific data without a login/password.
 
@@ -20,3 +20,7 @@ App for sharing "shower thoughts" - brief observations about life that are often
 
 - api/posts/:id
   - GET - gets posts based on userId
+
+### Technology
+
+Node.js, Express.js, Mocha, Chai, RESTful API Endpoints, PostgresSQL
